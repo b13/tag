@@ -27,7 +27,7 @@ you want to do with tags in your system, however multiple functionality might be
 
 ## Known bugs
 * JavaScript does not care about the ordering of the tags in a list, which would be really cool. This stems
-from the fact that the JavaScript library (originally taken from )
+from the fact that the JavaScript library (originally taken from Bootstrap-TagsInput)
 
 ## Missing features
 * Permission handling: Make certain tags "read-only" for editors, so they can not remove specific tags from a record.
