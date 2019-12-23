@@ -1,0 +1,24 @@
+{
+	"name": "b13/tax",
+	"type": "typo3-cms-extension",
+	"description": "Manage tags in TYPO3 Core",
+	"license": "GPL-2.0-or-later",
+	"config": {
+		"vendor-dir": "build/vendor"
+	},
+	"require": {
+		"php": "^7.2",
+		"typo3/cms-core": "^9.5 || ^10.0",
+		"typo3/cms-backend": "^9.5 || ^10.0"
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "tax"
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"B13\\Tax\\": "Classes/"
+		}
+	}
+}
