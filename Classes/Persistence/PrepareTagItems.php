@@ -45,7 +45,10 @@ class PrepareTagItems
         }
 
         foreach ($relevantFields as $fieldName) {
-            if (isset($incomingFieldArray[$fieldName])) {
+            if (isset($incomingFieldArray[$fieldName]) && !empty($incomingFieldArray[$fieldName])) {
+                if (!is_array($incomingFieldArray[$fieldName])) {
+                    $incomingFieldArray[$fieldName] = explode(',', $incomingFieldArray[$fieldName]);
+                }
                 $incomingFieldArray[$fieldName] = $this->normalizeValuesAndMapToIds(
                     $incomingFieldArray[$fieldName],
                     (int)($incomingFieldArray['pid'] > 0 ? $incomingFieldArray['pid'] : 0)
