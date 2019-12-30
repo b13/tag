@@ -69,6 +69,9 @@ class TagListElement extends AbstractFormElement
         $items = [];
         foreach ($selectedItems as $itemValue) {
             $tagRecord = BackendUtility::getRecord('sys_tag', $itemValue);
+            if (!is_array($tagRecord)) {
+                continue;
+            }
             $items[] = [
                 'value' => (int)$itemValue,
                 'name' => htmlspecialchars($tagRecord['name']),
