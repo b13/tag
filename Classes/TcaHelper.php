@@ -63,7 +63,7 @@ class TcaHelper
     {
         $tagFieldNames = [];
         foreach ($GLOBALS['TCA'][$table]['columns'] as $column => $columnDetails) {
-            if ($columnDetails['config']['foreign_table'] ?? '' === 'sys_tag') {
+            if (($columnDetails['config']['foreign_table'] ?? '') === 'sys_tag') {
                 $tagFieldNames[] = $column;
             }
         }
