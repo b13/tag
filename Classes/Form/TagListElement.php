@@ -47,6 +47,7 @@ class TagListElement extends AbstractFormElement
         $html[] =   '<div class="form-control-wrap">';
         $html[] =       '<div class="form-wizards-wrap">';
         $html[] =           '<div class="form-wizards-element">';
+        $html[] =               '<input type="hidden" name="' . htmlspecialchars($elementName) . '[] " value="">';
         $html[] =               '<select multiple class="form-control" name="' . htmlspecialchars($elementName) . '[]" id="' . $tagsId . '" placeholder="Add Keywords by typing">';
         $html[] =               '</select>';
         $html[] =           '</div>';
@@ -68,6 +69,9 @@ class TagListElement extends AbstractFormElement
 
         $items = [];
         foreach ($selectedItems as $itemValue) {
+            if (empty($itemValue)) {
+                continue;
+            }
             $tagRecord = BackendUtility::getRecord('sys_tag', $itemValue);
             if (!is_array($tagRecord)) {
                 continue;

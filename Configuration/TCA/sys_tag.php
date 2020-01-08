@@ -15,7 +15,7 @@ return [
         ],
         'security' => [
             'ignoreRootLevelRestriction' => true,
-        ]
+        ],
     ],
     'interface' => [
         'showRecordFieldList' => 'name'
