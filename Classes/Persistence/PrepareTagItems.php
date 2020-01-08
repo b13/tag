@@ -13,8 +13,10 @@ namespace B13\Tax\Persistence;
 
 use B13\Tax\Domain\Repository\TagRepository;
 use B13\Tax\TcaHelper;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\MathUtility;
 
 class PrepareTagItems
 {
@@ -44,6 +46,17 @@ class PrepareTagItems
             return;
         }
 
+        $currentPid = 0;
+        if (isset($incomingFieldArray['pid'])) {
+            $currentPid = (int)$incomingFieldArray['pid'];
+        } elseif (MathUtility::canBeInterpretedAsInteger($id)) {
+            // Existing record, we know something
+            $record = BackendUtility::getRecord($table, $id, 'pid');
+            if (is_array($record)) {
+                $currentPid = (int)$record['pid'];
+            }
+        }
+
         foreach ($relevantFields as $fieldName) {
             if (!isset($incomingFieldArray[$fieldName])) {
                 continue;
@@ -57,7 +70,7 @@ class PrepareTagItems
             $incomingFieldArray[$fieldName] = array_filter($incomingFieldArray[$fieldName]);
             $incomingFieldArray[$fieldName] = $this->normalizeValuesAndMapToIds(
                 $incomingFieldArray[$fieldName],
-                (int)($incomingFieldArray['pid'] > 0 ? $incomingFieldArray['pid'] : 0)
+                $currentPid
             );
             if ($convertToList) {
                 $incomingFieldArray[$fieldName] = implode(',', $incomingFieldArray[$fieldName]);
