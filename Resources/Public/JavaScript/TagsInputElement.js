@@ -18,7 +18,7 @@ define(['jquery', 'TYPO3/CMS/Tax/typeahead'], function($, typeahead) {
         maxTags: undefined,
         maxChars: undefined,
         confirmKeys: ['Enter', ','],
-        confirmOnPaste: true,
+        confirmOnPaste: false,
         deleteKeys: ['Backspace', 'Delete'],
         delimiter: ',',
         delimiterRegex: null,
@@ -461,9 +461,9 @@ define(['jquery', 'TYPO3/CMS/Tax/typeahead'], function($, typeahead) {
                 var text = $input.val(),
                     maxLengthReached = self.options.maxChars && text.length >= self.options.maxChars;
                 if (self.options.freeInput && (keyInList(event, self.options.confirmKeys) || (self.options.confirmOnPaste && event.originalEvent.type === 'input') || maxLengthReached)) {
-                    var items = text.split(self.options.delimiter);
                     // Only attempt to add a tag if there is data in the field
-                    if (items.length !== 0) {
+                    if (text.length !== 0) {
+                        var items = text.split(self.options.delimiter);
                         for (var i = 0; i < items.length; i++) {
                             self.add(maxLengthReached ? items[i].substr(0, self.options.maxChars) : items[i]);
                         }
