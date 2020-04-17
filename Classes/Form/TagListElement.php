@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
-namespace B13\Tax\Form;
+namespace B13\Tag\Form;
 
 /*
- * This file is part of TYPO3 CMS-based extension "tax" by b13.
+ * This file is part of TYPO3 CMS-based extension "tag" by b13.
  *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
@@ -82,12 +82,12 @@ class TagListElement extends AbstractFormElement
             ];
         }
 
-        $ajaxUrl = GeneralUtility::makeInstance(UriBuilder::class)->buildUriFromRoute('ajax_tax_suggest_tags');
+        $ajaxUrl = GeneralUtility::makeInstance(UriBuilder::class)->buildUriFromRoute('ajax_tag_suggest_tags');
         $resultArray['html'] = implode(LF, $html);
 
-        $resultArray['stylesheetFiles'][] = 'EXT:tax/Resources/Public/StyleSheets/tagsinput.css';
+        $resultArray['stylesheetFiles'][] = 'EXT:tag/Resources/Public/StyleSheets/tagsinput.css';
         $resultArray['requireJsModules'][] = [
-            'TYPO3/CMS/Tax/TagsInputElement' => 'function(TagsInputElement) {
+            'TYPO3/CMS/Tag/TagsInputElement' => 'function(TagsInputElement) {
                 new TagsInputElement("' . $tagsId . '", {
                     itemValue: function(item) {
                         return item.value || item;

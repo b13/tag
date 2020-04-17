@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
-namespace B13\Tax;
+namespace B13\Tag;
 
 /*
- * This file is part of TYPO3 CMS-based extension "tax" by b13.
+ * This file is part of TYPO3 CMS-based extension "tag" by b13.
  *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
@@ -11,7 +11,7 @@ namespace B13\Tax;
  */
 
 /**
- * Helper functionality to quickly work with tags without having to configure TCA, this also allows for "tax"
+ * Helper functionality to quickly work with tags without having to configure TCA, this also allows for "tag"
  * to change implementation without having users to modify their code.
  */
 class TcaHelper
@@ -22,7 +22,7 @@ class TcaHelper
             'type' => 'select',
             'renderType' => 'tagList',
             'minitems' => 0,
-            'maxitems' => 100,
+            'maxitems' => 1000,
             'multiple' => true,
             'items' => [],
             'foreign_table' => 'sys_tag',

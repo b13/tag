@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
-namespace B13\Tax\Persistence;
+namespace B13\Tag\Persistence;
 
 /*
- * This file is part of TYPO3 CMS-based extension "tax" by b13.
+ * This file is part of TYPO3 CMS-based extension "tag" by b13.
  *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
@@ -11,8 +11,8 @@ namespace B13\Tax\Persistence;
  */
 
 
-use B13\Tax\Domain\Repository\TagRepository;
-use B13\Tax\TcaHelper;
+use B13\Tag\Domain\Repository\TagRepository;
+use B13\Tag\TcaHelper;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

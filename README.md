@@ -9,7 +9,7 @@ Characteristics of tags:
 
 ## Installation
 
-Use `composer req b13/tax` or download the package from the official TYPO3 Extension Repository.
+Use `composer req b13/tag` or download the package from the official TYPO3 Extension Repository.
 
 You need TYPO3 v9 or later for this extension to work.
 
@@ -19,7 +19,7 @@ For enabling tags in your TCA table of TYPO3, configure it like this in your dat
 
     'keywords' => [
         'label' => 'Keywords',
-        'config' => (new \B13\Tax\TcaHelper)->buildFieldConfiguration('tx_my_table', 'keywords')
+        'config' => (new \B13\Tag\TcaHelper)->buildFieldConfiguration('tx_my_table', 'keywords')
     ]
 
 As all tags are stored in `sys_tag` and all its relations within `sys_tag_mm`, you're on your own whatever

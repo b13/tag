@@ -1,5 +1,5 @@
 {
-	"name": "b13/tax",
+	"name": "b13/tag",
 	"type": "typo3-cms-extension",
 	"description": "Manage tags in TYPO3 Core",
 	"license": "GPL-2.0-or-later",
@@ -13,12 +13,12 @@
 	},
 	"extra": {
 		"typo3/cms": {
-			"extension-key": "tax"
+			"extension-key": "tag"
 		}
 	},
 	"autoload": {
 		"psr-4": {
-			"B13\\Tax\\": "Classes/"
+			"B13\\Tag\\": "Classes/"
 		}
 	}
 }

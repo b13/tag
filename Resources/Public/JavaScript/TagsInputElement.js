@@ -1,4 +1,4 @@
-define(['jquery', 'TYPO3/CMS/Tax/typeahead'], function($, typeahead) {
+define(['jquery', 'TYPO3/CMS/Backend/FormEngine', 'TYPO3/CMS/Tag/typeahead'], function($, FormEngine, typeahead) {
     var defaultOptions = {
         tagClass: function(item) {
             return 'label label-info';
