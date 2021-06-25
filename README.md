@@ -15,6 +15,10 @@ You need TYPO3 v9 or later for this extension to work.
 
 ## Configuration
 
+Add a database field for keywords/tags in your database table:
+
+    keywords int(11) unsigned DEFAULT '0' NOT NULL
+
 For enabling tags in your TCA table of TYPO3, configure it like this in your database table (`Configuration/TCA/tx_my_table.php`).
 
     'keywords' => [
