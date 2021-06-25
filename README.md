@@ -45,9 +45,11 @@ The extension is licensed under GPL v2+, same as the TYPO3 Core. For details see
 
 ## Credits
 
-This extension was created by [Benni Mack](https://github.com/bmack) in 2019 for [b13 GmbH](https://b13.com).
+This extension was created by [Benni Mack](https://github.com/bmack) in 2019 for [b13 GmbH, Stuttgart](https://b13.com).
 
 * Typeahead functionality from https://github.com/bassjobsen/Bootstrap-3-Typeahead
 * https://github.com/hrobertson/bootstrap-tagsinput/ for Bootstrap Tags-Input
 
 For Bootstrap 4, we might use https://github.com/Nodws/bootstrap4-tagsinput
+
+[Find more TYPO3 extensions we have developed](https://b13.com/useful-typo3-extensions-from-b13-to-you) that help us deliver value in client projects. As part of the way we work, we focus on testing and best practices to ensure long-term performance, reliability, and results in all our code.
