@@ -36,7 +36,7 @@ class TcaHelper
         ];
         // Merge changes to TCA configuration
         if (!empty($fieldConfigurationOverride)) {
-            array_replace_recursive(
+            $fieldConfiguration = array_replace_recursive(
                 $fieldConfiguration,
                 $fieldConfigurationOverride
             );

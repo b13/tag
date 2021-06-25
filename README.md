@@ -19,8 +19,10 @@ For enabling tags in your TCA table of TYPO3, configure it like this in your dat
 
     'keywords' => [
         'label' => 'Keywords',
-        'config' => (new \B13\Tag\TcaHelper)->buildFieldConfiguration('tx_my_table', 'keywords')
+        'config' => (new \B13\Tag\TcaHelper())->buildFieldConfiguration('tx_my_table', 'keywords')
     ]
+
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tx_my_table', 'keywords');
 
 As all tags are stored in `sys_tag` and all its relations within `sys_tag_mm`, you're on your own whatever
 you want to do with tags in your system, however multiple functionality might be added later-on.

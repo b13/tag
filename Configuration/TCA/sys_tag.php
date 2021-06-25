@@ -1,7 +1,7 @@
 <?php
 return [
     'ctrl' => [
-        'title' => 'Tags',
+        'title' => 'LLL:EXT:tag/Resources/Private/Language/locallang_tca.xlf:sys_tag',
         'label' => 'name',
         'tstamp' => 'updatedon',
         'crdate' => 'createdon',
@@ -16,9 +16,6 @@ return [
         'security' => [
             'ignoreRootLevelRestriction' => true,
         ],
-    ],
-    'interface' => [
-        'showRecordFieldList' => 'name'
     ],
     'types' => [
         '1' => [
