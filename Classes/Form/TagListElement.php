@@ -41,6 +41,8 @@ class TagListElement extends AbstractFormElement
 
         $tagsId = StringUtility::getUniqueId('formengine-tags-');
 
+        // @todo: make this configurable via TSconfig
+        $placeholder = $this->getLanguageService()->sL('LLL:EXT:tag/Resources/Private/Language/locallang_tca.xlf:reference.placeholder');
         $html = [];
         $html[] = '<div class="formengine-field-item t3js-formengine-field-item">';
         $html[] =   $fieldInformationHtml;
@@ -48,7 +50,7 @@ class TagListElement extends AbstractFormElement
         $html[] =       '<div class="form-wizards-wrap">';
         $html[] =           '<div class="form-wizards-element">';
         $html[] =               '<input type="hidden" name="' . htmlspecialchars($elementName) . '[] " value="">';
-        $html[] =               '<select multiple class="form-control" name="' . htmlspecialchars($elementName) . '[]" id="' . $tagsId . '" placeholder="Add Keywords by typing">';
+        $html[] =               '<select multiple class="form-control" name="' . htmlspecialchars($elementName) . '[]" id="' . $tagsId . '" placeholder="' . htmlspecialchars($placeholder) . '">';
         $html[] =               '</select>';
         $html[] =           '</div>';
         if (!empty($fieldControlHtml)) {

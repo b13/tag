@@ -3,8 +3,17 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2021-06-25T18:31:10" product-name="tag">
 		<header/>
 		<body>
-			<trans-unit id="sys_tag">
+			<trans-unit id="sys_tag" resname="sys_tag">
 				<source>Tags</source>
+			</trans-unit>
+			<trans-unit id="sys_tag.name" resname="sys_tag.name">
+				<source>Tag Name</source>
+			</trans-unit>
+			<trans-unit id="sys_tag.items" resname="sys_tag.items">
+				<source>Connected items</source>
+			</trans-unit>
+			<trans-unit id="reference.placeholder" resname="reference.placeholder">
+				<source>Add Keywords by typing</source>
 			</trans-unit>
 		</body>
 	</file>

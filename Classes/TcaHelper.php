@@ -43,10 +43,10 @@ class TcaHelper
         }
 
         // Register opposite references for the foreign side of a relation
-        if (empty($GLOBALS['TCA']['sys_tag']['columns']['items']['config']['MM_oppositeUsage'][$table])) {
+        if (empty($GLOBALS['TCA']['sys_tag']['columns']['items']['config']['MM_oppositeUsage'][$table] ?? [])) {
             $GLOBALS['TCA']['sys_tag']['columns']['items']['config']['MM_oppositeUsage'][$table] = [];
         }
-        if (!in_array($fieldName, $GLOBALS['TCA']['sys_tag']['columns']['items']['config']['MM_oppositeUsage'][$table], true)) {
+        if (!in_array($fieldName, $GLOBALS['TCA']['sys_tag']['columns']['items']['config']['MM_oppositeUsage'][$table] ?? [], true)) {
             $GLOBALS['TCA']['sys_tag']['columns']['items']['config']['MM_oppositeUsage'][$table][] = $fieldName;
         }
 

@@ -26,7 +26,7 @@ return [
     ],
     'columns' => [
         'name' => [
-            'label' => 'Tag Name',
+            'label' => 'LLL:EXT:tag/Resources/Private/Language/locallang_tca.xlf:sys_tag.name',
             'config' => [
                 'type' => 'input',
                 'width' => 200,
@@ -34,7 +34,7 @@ return [
             ]
         ],
         'items' => [
-            'label' => 'Connected items',
+            'label' => 'LLL:EXT:tag/Resources/Private/Language/locallang_tca.xlf:sys_tag.items',
             'config' => [
                 'type' => 'group',
                 'internal_type' => 'db',
