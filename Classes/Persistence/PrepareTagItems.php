@@ -20,10 +20,7 @@ use TYPO3\CMS\Core\Utility\MathUtility;
 
 class PrepareTagItems
 {
-    /**
-     * @var TagRepository
-     */
-    protected $tagRepository;
+    protected TagRepository $tagRepository;
 
     public function __construct()
     {
@@ -64,10 +61,10 @@ class PrepareTagItems
             $convertToList = false;
             if (!is_array($incomingFieldArray[$fieldName])) {
                 $convertToList = true;
-                $incomingFieldArray[$fieldName] = explode(',', $incomingFieldArray[$fieldName]);
+                $incomingFieldArray[$fieldName] = explode(',', (string)$incomingFieldArray[$fieldName]);
             }
             // Remove "empty" parts
-            $incomingFieldArray[$fieldName] = array_filter($incomingFieldArray[$fieldName]);
+            $incomingFieldArray[$fieldName] = array_filter($incomingFieldArray[$fieldName] ?? []);
             $incomingFieldArray[$fieldName] = $this->normalizeValuesAndMapToIds(
                 $incomingFieldArray[$fieldName],
                 $currentPid
@@ -90,7 +87,7 @@ class PrepareTagItems
         $unmappedTags = $tags;
         $tagsInDatabase = $this->tagRepository->findRecordsForTagNames($tags);
         foreach ($tags as $k => $tag) {
-            if (is_numeric($tag) || $tagsInDatabase[$tag]) {
+            if (is_numeric($tag) || isset($tagsInDatabase[$tag])) {
                 unset($unmappedTags[$k]);
             }
         }

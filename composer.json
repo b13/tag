@@ -7,9 +7,10 @@
 		"vendor-dir": "build/vendor"
 	},
 	"require": {
-		"php": "^7.2",
-		"typo3/cms-core": "^9.5 || ^10.0 || ^11.0",
-		"typo3/cms-backend": "^9.5 || ^10.0 || ^11.0"
+		"php": "^7.4 || ^8.0",
+		"doctrine/dbal": "^2.13 || ^3.0",
+		"typo3/cms-core": "^10.0 || ^11.0",
+		"typo3/cms-backend": "^10.0 || ^11.0"
 	},
 	"extra": {
 		"typo3/cms": {

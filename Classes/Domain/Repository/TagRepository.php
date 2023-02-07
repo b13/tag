@@ -19,7 +19,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class TagRepository
 {
-    private $tableName = 'sys_tag';
+    private string $tableName = 'sys_tag';
 
     public function findRecordsForTagNames(array $tagNames): array
     {
@@ -33,10 +33,10 @@ class TagRepository
                     $queryBuilder->createNamedParameter($tagNames, Connection::PARAM_STR_ARRAY)
                 )
             )
-            ->execute();
+            ->executeQuery();
 
         $mappedItems = [];
-        while ($row = $stmt->fetch()) {
+        while ($row = $stmt->fetchAssociative()) {
             $mappedItems[$row['name']] = $row['uid'];
         }
         return $mappedItems;
@@ -67,10 +67,10 @@ class TagRepository
                     $queryBuilder->createNamedParameter('%' . $queryBuilder->escapeLikeWildcards($searchWord) . '%')
                 )
             )
-            ->execute();
+            ->executeQuery();
 
         $items = [];
-        while ($row = $stmt->fetch()) {
+        while ($row = $stmt->fetchAssociative()) {
             $items[] = [
                 'value' => (int)$row['uid'],
                 'name' => $row['name']
