@@ -1,4 +1,5 @@
 <?php
+
 return [
     'ctrl' => [
         'title' => 'LLL:EXT:tag/Resources/Private/Language/locallang_tca.xlf:sys_tag',
@@ -11,7 +12,7 @@ return [
         'rootLevel' => -1,
         'searchFields' => 'name',
         'typeicon_classes' => [
-            'default' => 'mimetypes-x-sys_category'
+            'default' => 'mimetypes-x-sys_category',
         ],
         'security' => [
             'ignoreRootLevelRestriction' => true,
@@ -30,8 +31,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'width' => 200,
-                'eval' => 'trim,required'
-            ]
+                'eval' => 'trim,required',
+            ],
         ],
         'items' => [
             'label' => 'LLL:EXT:tag/Resources/Private/Language/locallang_tca.xlf:sys_tag.items',

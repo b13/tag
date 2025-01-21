@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace B13\Tag\Persistence;
 
 /*
@@ -9,7 +11,6 @@ namespace B13\Tag\Persistence;
  * the terms of the GNU General Public License, either version 2
  * of the License, or any later version.
  */
-
 
 use B13\Tag\Domain\Repository\TagRepository;
 use B13\Tag\TcaHelper;

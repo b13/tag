@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace B13\Tag\Domain\Repository;
 
 /*
@@ -73,7 +75,7 @@ class TagRepository
         while ($row = $stmt->fetchAssociative()) {
             $items[] = [
                 'value' => (int)$row['uid'],
-                'name' => $row['name']
+                'name' => $row['name'],
             ];
         }
         return $items;

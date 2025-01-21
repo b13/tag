@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace B13\Tag\Form;
 
 /*
@@ -18,9 +20,6 @@ use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
-/**
- * Render a list of tags.
- */
 class TagListElement extends AbstractFormElement
 {
     public function render()
@@ -104,12 +103,12 @@ class TagListElement extends AbstractFormElement
                     typeahead: {
                         minLength: 2,
                         source: function(query) {
-                            var url = ' . GeneralUtility::quoteJSvalue($ajaxUrl) . ' + "&q=" + query;
+                            var url = ' . GeneralUtility::quoteJSvalue((string)$ajaxUrl) . ' + "&q=" + query;
                             return $.getJSON(url);
                         }
                     }
                 });
-            }'
+            }',
             ];
         } else {
             $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::create(
