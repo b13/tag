@@ -22,7 +22,7 @@ use TYPO3\CMS\Core\Utility\StringUtility;
 
 class TagListElement extends AbstractFormElement
 {
-    public function render()
+    public function render(): array
     {
         $resultArray = $this->initializeResultArray();
         $selectedItems = $this->data['parameterArray']['itemFormElValue'] ?? [];
