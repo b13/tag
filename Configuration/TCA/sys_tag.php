@@ -15,6 +15,7 @@ return [
         ],
         'security' => [
             'ignoreRootLevelRestriction' => true,
+            'ignorePageTypeRestriction' => true,
         ],
     ],
     'types' => [
