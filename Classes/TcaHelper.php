@@ -12,10 +12,6 @@ namespace B13\Tag;
  * of the License, or any later version.
  */
 
-/**
- * Helper functionality to quickly work with tags without having to configure TCA, this also allows for "tag"
- * to change implementation without having users to modify their code.
- */
 class TcaHelper
 {
     public function buildFieldConfiguration(string $table, string $fieldName, array $fieldConfigurationOverride = null): array
@@ -55,12 +51,6 @@ class TcaHelper
         return $fieldConfiguration;
     }
 
-    /**
-     * Shorthand function to identify all fields that have tags based on the foreign_table field.
-     *
-     * @param string $table
-     * @return array
-     */
     public function findTagFieldsForTable(string $table): array
     {
         $tagFieldNames = [];

@@ -14,26 +14,26 @@ namespace B13\Tag\Domain\Repository;
 
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-/**
- * Abstraction layer to keep all tag DB queries within this PHP class.
- */
 class TagRepository
 {
-    private string $tableName = 'sys_tag';
+    private const TABLE_NAME = 'sys_tag';
+
+    private ConnectionPool $connectionPool;
+
+    public function __construct(ConnectionPool $connectionPool)
+    {
+        $this->connectionPool = $connectionPool;
+    }
 
     public function findRecordsForTagNames(array $tagNames): array
     {
-        $queryBuilder = $this->getConnection()->createQueryBuilder();
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
         $stmt = $queryBuilder
             ->select('*')
-            ->from($this->tableName)
+            ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->in(
-                    'name',
-                    $queryBuilder->createNamedParameter($tagNames, Connection::PARAM_STR_ARRAY)
-                )
+                $queryBuilder->expr()->in('name', $queryBuilder->createNamedParameter($tagNames, Connection::PARAM_STR_ARRAY))
             )
             ->executeQuery();
 
@@ -41,33 +41,33 @@ class TagRepository
         while ($row = $stmt->fetchAssociative()) {
             $mappedItems[$row['name']] = $row['uid'];
         }
+
         return $mappedItems;
     }
 
-    public function add(string $tagName, int $pid = 0)
+    public function add(string $tagName, int $pid = 0): string
     {
-        $conn = $this->getConnection();
-        $conn->insert($this->tableName, ['name' => $tagName, 'pid' => $pid, 'createdon' => $GLOBALS['EXEC_TIME']]);
+        $conn = $this->connectionPool->getConnectionForTable(self::TABLE_NAME);
+        $conn->insert(
+            self::TABLE_NAME,
+            [
+                'name' => $tagName,
+                'pid' => $pid,
+                'createdon' => $GLOBALS['EXEC_TIME'],
+            ]
+        );
+
         return $conn->lastInsertId();
     }
 
-    /**
-     * Simple query for looking for tags that contain the search word. No multi-word / and/or search implemented yet.
-     *
-     * @param string $searchWord
-     * @return array
-     */
     public function search(string $searchWord): array
     {
-        $queryBuilder = $this->getConnection()->createQueryBuilder();
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
         $stmt = $queryBuilder
             ->select('*')
-            ->from($this->tableName)
+            ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->like(
-                    'name',
-                    $queryBuilder->createNamedParameter('%' . $queryBuilder->escapeLikeWildcards($searchWord) . '%')
-                )
+                $queryBuilder->expr()->like('name', $queryBuilder->createNamedParameter('%' . $queryBuilder->escapeLikeWildcards($searchWord) . '%'))
             )
             ->executeQuery();
 
@@ -79,10 +79,5 @@ class TagRepository
             ];
         }
         return $items;
-    }
-
-    private function getConnection(): Connection
-    {
-        return GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable($this->tableName);
     }
 }
