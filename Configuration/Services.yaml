@@ -6,3 +6,9 @@ services:
 
   B13\Tag\:
     resource: '../Classes/*'
+
+  B13\Tag\Controller\SuggestReceiver:
+    public: true
+
+  B13\Tag\Persistence\PrepareTagItems:
+    public: true
