@@ -6,7 +6,6 @@ return [
         'label' => 'name',
         'tstamp' => 'updatedon',
         'crdate' => 'createdon',
-        'cruser_id' => 'createdby',
         'delete' => 'deleted',
         'default_sortby' => 'name',
         'rootLevel' => -1,
@@ -31,14 +30,14 @@ return [
             'config' => [
                 'type' => 'input',
                 'width' => 200,
-                'eval' => 'trim,required',
+                'eval' => 'trim',
+                'required' => true,
             ],
         ],
         'items' => [
             'label' => 'LLL:EXT:tag/Resources/Private/Language/locallang_tca.xlf:sys_tag.items',
             'config' => [
                 'type' => 'group',
-                'internal_type' => 'db',
                 'allowed' => '*',
                 'MM' => 'sys_tag_mm',
                 'MM_oppositeUsage' => [],
