@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace B13\Tag\Persistence;
 
 /*
@@ -10,33 +12,22 @@ namespace B13\Tag\Persistence;
  * of the License, or any later version.
  */
 
-
 use B13\Tag\Domain\Repository\TagRepository;
 use B13\Tag\TcaHelper;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
 
 class PrepareTagItems
 {
     protected TagRepository $tagRepository;
 
-    public function __construct()
+    public function __construct(TagRepository $tagRepository)
     {
-        $this->tagRepository = GeneralUtility::makeInstance(TagRepository::class);
+        $this->tagRepository = $tagRepository;
     }
 
-    /**
-     * DataHandler hook to create tags automatically if they don't exist yet. This way, a clean list of
-     * IDs is entered to DataHandler.
-     *
-     * @param $incomingFieldArray
-     * @param $table
-     * @param $id
-     * @param DataHandler $dataHandler
-     */
-    public function processDatamap_preProcessFieldArray(&$incomingFieldArray, $table, $id, DataHandler $dataHandler)
+    public function processDatamap_preProcessFieldArray(array &$incomingFieldArray, string $table, string $id, DataHandler $dataHandler)
     {
         $relevantFields = (new TcaHelper())->findTagFieldsForTable($table);
         if (empty($relevantFields)) {
@@ -75,13 +66,6 @@ class PrepareTagItems
         }
     }
 
-    /**
-     * See what tags are already in the database and add missing tags, and map the tag names to the IDs.
-     *
-     * @param array $tags
-     * @param int $pid
-     * @return array
-     */
     protected function normalizeValuesAndMapToIds(array $tags, int $pid): array
     {
         $unmappedTags = $tags;

@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace B13\Tag\Form;
 
 /*
@@ -13,17 +15,19 @@ namespace B13\Tag\Form;
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
-/**
- * Render a list of tags.
- */
 class TagListElement extends AbstractFormElement
 {
-    public function render()
+    private UriBuilder $uriBuilder;
+
+    public function __construct(UriBuilder $uriBuilder)
+    {
+        $this->uriBuilder = $uriBuilder;
+    }
+
+    public function render(): array
     {
         $resultArray = $this->initializeResultArray();
         $selectedItems = $this->data['parameterArray']['itemFormElValue'] ?? [];
@@ -86,36 +90,11 @@ class TagListElement extends AbstractFormElement
             ];
         }
 
-        $ajaxUrl = GeneralUtility::makeInstance(UriBuilder::class)->buildUriFromRoute('ajax_tag_suggest_tags');
+        $ajaxUrl = $this->uriBuilder->buildUriFromRoute('ajax_tag_suggest_tags');
         $resultArray['html'] = implode(LF, $html);
 
         $resultArray['stylesheetFiles'][] = 'EXT:tag/Resources/Public/StyleSheets/tagsinput.css';
-        if ((new Typo3Version())->getMajorVersion() < 12) {
-            $resultArray['requireJsModules'][] = [
-                'TYPO3/CMS/Tag/TagsInputElement' => 'function(TagsInputElement) {
-                new TagsInputElement("' . $tagsId . '", {
-                    itemValue: function(item) {
-                        return item.value || item;
-                    },
-                    itemText: function(item) {
-                        return item.name || item;
-                    },
-                    items: ' . json_encode($items) . ',
-                    typeahead: {
-                        minLength: 2,
-                        source: function(query) {
-                            var url = ' . GeneralUtility::quoteJSvalue($ajaxUrl) . ' + "&q=" + query;
-                            return $.getJSON(url);
-                        }
-                    }
-                });
-            }'
-            ];
-        } else {
-            $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::create(
-                '@b13/tag/tags-input-element.js',
-            )->instance($tagsId, $items, (string)$ajaxUrl);
-        }
+        $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::create('@b13/tag/tags-input-element.js')->instance($tagsId, $items, (string)$ajaxUrl);
 
         return $resultArray;
     }

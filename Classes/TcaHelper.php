@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace B13\Tag;
 
 /*
@@ -10,12 +12,18 @@ namespace B13\Tag;
  * of the License, or any later version.
  */
 
-/**
- * Helper functionality to quickly work with tags without having to configure TCA, this also allows for "tag"
- * to change implementation without having users to modify their code.
- */
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 class TcaHelper
 {
+    private Typo3Version $typo3Version;
+
+    public function __construct()
+    {
+        $this->typo3Version = GeneralUtility::makeInstance(Typo3Version::class);
+    }
+
     public function buildFieldConfiguration(string $table, string $fieldName, array $fieldConfigurationOverride = null): array
     {
         $fieldConfiguration = [
@@ -27,13 +35,17 @@ class TcaHelper
             'items' => [],
             'foreign_table' => 'sys_tag',
             'MM' => 'sys_tag_mm',
-            'MM_hasUidField' => true,
             'MM_opposite_field' => 'items',
             'MM_match_fields' => [
                 'tablenames' => $table,
                 'fieldname' => $fieldName,
             ],
         ];
+
+        if ($this->typo3Version->getMajorVersion() === 12) {
+            $fieldConfiguration['MM_hasUidField'] = true;
+        }
+
         // Merge changes to TCA configuration
         if (!empty($fieldConfigurationOverride)) {
             $fieldConfiguration = array_replace_recursive(
@@ -53,12 +65,6 @@ class TcaHelper
         return $fieldConfiguration;
     }
 
-    /**
-     * Shorthand function to identify all fields that have tags based on the foreign_table field.
-     *
-     * @param string $table
-     * @return array
-     */
     public function findTagFieldsForTable(string $table): array
     {
         $tagFieldNames = [];
