@@ -4,7 +4,10 @@
 	"description": "Manage tags in TYPO3 Core",
 	"license": "GPL-2.0-or-later",
 	"config": {
-		"vendor-dir": "build/vendor"
+		"vendor-dir": "build/vendor",
+		"allow-plugins": {
+			"typo3/cms-composer-installers": true
+		}
 	},
 	"require": {
 		"php": "^7.4 || ^8.0",
