@@ -6,7 +6,8 @@
 	"config": {
 		"vendor-dir": "build/vendor",
 		"allow-plugins": {
-			"typo3/cms-composer-installers": true
+			"typo3/cms-composer-installers": true,
+			"typo3/class-alias-loader": true
 		}
 	},
 	"require": {
