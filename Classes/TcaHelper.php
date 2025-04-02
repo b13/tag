@@ -15,6 +15,10 @@ namespace B13\Tag;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * Helper functionality to quickly work with tags without having to configure TCA, this also allows for "tag"
+ * to change implementation without having users to modify their code.
+ */
 class TcaHelper
 {
     private Typo3Version $typo3Version;
@@ -65,6 +69,9 @@ class TcaHelper
         return $fieldConfiguration;
     }
 
+    /**
+     * Shorthand function to identify all fields that have tags based on the foreign_table field.
+     */
     public function findTagFieldsForTable(string $table): array
     {
         $tagFieldNames = [];

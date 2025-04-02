@@ -20,6 +20,9 @@ use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
+/**
+ * Render a list of tags.
+ */
 class TagListElement extends AbstractFormElement
 {
     private UriBuilder $uriBuilder;

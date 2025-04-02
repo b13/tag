@@ -15,6 +15,9 @@ namespace B13\Tag\Domain\Repository;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
+/**
+ * Abstraction layer to keep all tag DB queries within this PHP class.
+ */
 class TagRepository
 {
     private const TABLE_NAME = 'sys_tag';
@@ -60,6 +63,9 @@ class TagRepository
         return $conn->lastInsertId();
     }
 
+    /**
+     * Simple query for looking for tags that contain the search word. No multi-word / and/or search implemented yet.
+     */
     public function search(string $searchWord): array
     {
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
