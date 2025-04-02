@@ -55,7 +55,6 @@ class TagListElement extends AbstractFormElement
 
         $tagsId = StringUtility::getUniqueId('formengine-tags-');
 
-        debug($this->data['parameterArray']);
         // @todo: make this configurable via TSconfig
         $placeholder = $this->getLanguageService()->sL('LLL:EXT:tag/Resources/Private/Language/locallang_tca.xlf:reference.placeholder');
         $html = [];
