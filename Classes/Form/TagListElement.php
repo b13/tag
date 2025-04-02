@@ -13,18 +13,23 @@ namespace B13\Tag\Form;
  */
 
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
+use TYPO3\CMS\Backend\Form\NodeFactory;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
 class TagListElement extends AbstractFormElement
 {
     private UriBuilder $uriBuilder;
 
-    public function __construct(UriBuilder $uriBuilder)
+    // ToDo: when v12 is dropped add DI with only UriBuilder
+    public function __construct()
     {
-        $this->uriBuilder = $uriBuilder;
+        // ToDo: remove manual instances of properties when v12 is dropped
+        $this->uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+        $this->nodeFactory = GeneralUtility::makeInstance(NodeFactory::class);
     }
 
     public function render(): array
@@ -47,6 +52,7 @@ class TagListElement extends AbstractFormElement
 
         $tagsId = StringUtility::getUniqueId('formengine-tags-');
 
+        debug($this->data['parameterArray']);
         // @todo: make this configurable via TSconfig
         $placeholder = $this->getLanguageService()->sL('LLL:EXT:tag/Resources/Private/Language/locallang_tca.xlf:reference.placeholder');
         $html = [];
@@ -97,5 +103,10 @@ class TagListElement extends AbstractFormElement
         $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::create('@b13/tag/tags-input-element.js')->instance($tagsId, $items, (string)$ajaxUrl);
 
         return $resultArray;
+    }
+
+    public function setData(array $data): void
+    {
+        $this->data = $data;
     }
 }
