@@ -18,7 +18,7 @@ namespace B13\Tag;
  */
 class TcaHelper
 {
-    public function buildFieldConfiguration(string $table, string $fieldName, array $fieldConfigurationOverride = null): array
+    public function buildFieldConfiguration(string $table, string $fieldName, ?array $fieldConfigurationOverride = null): array
     {
         $fieldConfiguration = [
             'type' => 'select',
