@@ -13,11 +13,9 @@ namespace B13\Tag\Form;
  */
 
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
-use TYPO3\CMS\Backend\Form\NodeFactory;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
 /**
@@ -25,14 +23,8 @@ use TYPO3\CMS\Core\Utility\StringUtility;
  */
 class TagListElement extends AbstractFormElement
 {
-    private UriBuilder $uriBuilder;
-
-    // ToDo: when v12 is dropped add DI with only UriBuilder
-    public function __construct()
+    public function __construct(private readonly UriBuilder $uriBuilder)
     {
-        // ToDo: remove manual instances of properties when v12 is dropped
-        $this->uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
-        $this->nodeFactory = GeneralUtility::makeInstance(NodeFactory::class);
     }
 
     public function render(): array

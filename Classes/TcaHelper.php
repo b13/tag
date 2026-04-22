@@ -12,23 +12,13 @@ namespace B13\Tag;
  * of the License, or any later version.
  */
 
-use TYPO3\CMS\Core\Information\Typo3Version;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-
 /**
  * Helper functionality to quickly work with tags without having to configure TCA, this also allows for "tag"
  * to change implementation without having users to modify their code.
  */
 class TcaHelper
 {
-    private Typo3Version $typo3Version;
-
-    public function __construct()
-    {
-        $this->typo3Version = GeneralUtility::makeInstance(Typo3Version::class);
-    }
-
-    public function buildFieldConfiguration(string $table, string $fieldName, array $fieldConfigurationOverride = null): array
+    public function buildFieldConfiguration(string $table, string $fieldName, ?array $fieldConfigurationOverride = null): array
     {
         $fieldConfiguration = [
             'type' => 'select',
@@ -45,10 +35,6 @@ class TcaHelper
                 'fieldname' => $fieldName,
             ],
         ];
-
-        if ($this->typo3Version->getMajorVersion() === 12) {
-            $fieldConfiguration['MM_hasUidField'] = true;
-        }
 
         // Merge changes to TCA configuration
         if (!empty($fieldConfigurationOverride)) {
