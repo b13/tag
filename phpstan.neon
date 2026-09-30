@@ -1,6 +1,3 @@
-includes:
-    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
-    - vendor/saschaegerer/phpstan-typo3/extension.neon
 
 parameters:
   level: 5
@@ -13,4 +10,5 @@ parameters:
       - */node_modules/*
       - vendor/*
       - public/*
+      - var/*
       - ./.php-cs-fixer.php

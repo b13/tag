@@ -23,9 +23,7 @@ use TYPO3\CMS\Core\Utility\StringUtility;
  */
 class TagListElement extends AbstractFormElement
 {
-    public function __construct(private readonly UriBuilder $uriBuilder)
-    {
-    }
+    public function __construct(private readonly UriBuilder $uriBuilder) {}
 
     public function render(): array
     {
@@ -91,7 +89,7 @@ class TagListElement extends AbstractFormElement
         }
 
         $ajaxUrl = $this->uriBuilder->buildUriFromRoute('ajax_tag_suggest_tags');
-        $resultArray['html'] = implode(LF, $html);
+        $resultArray['html'] = implode(chr(10), $html);
 
         $resultArray['stylesheetFiles'][] = 'EXT:tag/Resources/Public/StyleSheets/tagsinput.css';
         $resultArray['javaScriptModules'][] = JavaScriptModuleInstruction::create('@b13/tag/tags-input-element.js')->instance($tagsId, $items, (string)$ajaxUrl);

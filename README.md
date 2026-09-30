@@ -1,4 +1,4 @@
-# Tags for TYPO3 v9+
+# Tags for TYPO3 v13+
 
 Allow editing and adding lightweight tags for any kind of record to identify records easily.
 
@@ -11,7 +11,7 @@ Characteristics of tags:
 
 Use `composer req b13/tag` or download the package from the official TYPO3 Extension Repository.
 
-You need TYPO3 v9 or later for this extension to work.
+You need TYPO3 v13 or later for this extension to work.
 
 ## Configuration
 
