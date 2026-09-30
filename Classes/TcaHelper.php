@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace B13\Tag;
 
 /*
@@ -16,7 +18,7 @@ namespace B13\Tag;
  */
 class TcaHelper
 {
-    public function buildFieldConfiguration(string $table, string $fieldName, array $fieldConfigurationOverride = null): array
+    public function buildFieldConfiguration(string $table, string $fieldName, ?array $fieldConfigurationOverride = null): array
     {
         $fieldConfiguration = [
             'type' => 'select',
@@ -27,13 +29,13 @@ class TcaHelper
             'items' => [],
             'foreign_table' => 'sys_tag',
             'MM' => 'sys_tag_mm',
-            'MM_hasUidField' => true,
             'MM_opposite_field' => 'items',
             'MM_match_fields' => [
                 'tablenames' => $table,
                 'fieldname' => $fieldName,
             ],
         ];
+
         // Merge changes to TCA configuration
         if (!empty($fieldConfigurationOverride)) {
             $fieldConfiguration = array_replace_recursive(
@@ -55,9 +57,6 @@ class TcaHelper
 
     /**
      * Shorthand function to identify all fields that have tags based on the foreign_table field.
-     *
-     * @param string $table
-     * @return array
      */
     public function findTagFieldsForTable(string $table): array
     {

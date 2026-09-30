@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace B13\Tag\Controller;
 
 /*
@@ -14,21 +16,14 @@ use B13\Tag\Domain\Repository\TagRepository;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Http\JsonResponse;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-/**
- * Form Engine helper to find suitable tags to select from.
- */
 class SuggestReceiver
 {
-    /**
-     * @var TagRepository
-     */
-    protected $tagRepository;
+    protected TagRepository $tagRepository;
 
-    public function __construct()
+    public function __construct(TagRepository $tagRepository)
     {
-        $this->tagRepository = GeneralUtility::makeInstance(TagRepository::class);
+        $this->tagRepository = $tagRepository;
     }
 
     public function findSuitableTags(ServerRequestInterface $request): ResponseInterface
@@ -39,6 +34,7 @@ class SuggestReceiver
         } else {
             $tags = [];
         }
+
         return new JsonResponse($tags);
     }
 }

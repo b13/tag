@@ -11,10 +11,9 @@
 		}
 	},
 	"require": {
-		"php": "^7.4 || ^8.0",
-		"doctrine/dbal": "^2.13 || ^3.0",
-		"typo3/cms-core": "^11.0 || ^12.0",
-		"typo3/cms-backend": "^11.0 || ^12.0"
+		"php": "^8.2",
+		"typo3/cms-core": "^13.4 || ^14.3",
+		"typo3/cms-backend": "^13.4 || ^14.3"
 	},
 	"extra": {
 		"typo3/cms": {
@@ -25,5 +24,11 @@
 		"psr-4": {
 			"B13\\Tag\\": "Classes/"
 		}
+	},
+	"require-dev": {
+		"friendsofphp/php-cs-fixer": "^3.68",
+		"phpstan/phpstan": "^1.12",
+		"saschaegerer/phpstan-typo3": "^1.10",
+		"typo3/coding-standards": "^0.8.0"
 	}
 }
